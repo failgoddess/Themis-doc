@@ -17,7 +17,7 @@
     
     
       
-        <title>设计思路 - Themis</title>
+        <title>使用文档 - Themis</title>
       
     
     
@@ -140,7 +140,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              设计思路
+              使用文档
             
           </span>
         </div>
@@ -263,21 +263,6 @@
 
   
   
-  
-    <li class="md-nav__item">
-      <a href="../%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" class="md-nav__link">
-        使用文档
-      </a>
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
     
   
   
@@ -290,12 +275,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          设计思路
+          使用文档
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        设计思路
+        使用文档
       </a>
       
         
@@ -315,22 +300,37 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    数据类型
+    快速开始
   </a>
   
-    <nav class="md-nav" aria-label="数据类型">
+    <nav class="md-nav" aria-label="快速开始">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    基础数据类型
+    配置引入
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    复合数据类型
+    文件配置
+  </a>
+  
+    <nav class="md-nav" aria-label="文件配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#springrule" class="md-nav__link">
+    spring引入Rule
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#springrule_1" class="md-nav__link">
+    非spring引入Rule
   </a>
   
 </li>
@@ -339,93 +339,105 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
-    操作数
+    文件配置
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    操作符
+    基础组件
   </a>
   
-    <nav class="md-nav" aria-label="操作符">
+    <nav class="md-nav" aria-label="基础组件">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#meta" class="md-nav__link">
+    Meta组件──元数据定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action" class="md-nav__link">
+    Action组件──行为定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function" class="md-nav__link">
+    Function组件──扩展方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formulanode" class="md-nav__link">
+    FormulaNode组件──表达式配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bound" class="md-nav__link">
+    Bound组件──动态字符串
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
-    关系运算符
+    规则扩展
+  </a>
+  
+    <nav class="md-nav" aria-label="规则扩展">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ruleline" class="md-nav__link">
+    Ruleline组件──规则行
   </a>
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
-    逻辑运算符
+    流程编排组件
   </a>
   
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    函数的定义与调用
-  </a>
-  
-    <nav class="md-nav" aria-label="函数的定义与调用">
+    <nav class="md-nav" aria-label="流程编排组件">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#getstore" class="md-nav__link">
-    getStore函数定义
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#getdiscountgetstore" class="md-nav__link">
-    getDiscount调用getStore
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    运算表达式
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    顺序、分支、循环
-  </a>
-  
-    <nav class="md-nav" aria-label="顺序、分支、循环">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#flow" class="md-nav__link">
-    Flow模式
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#graph" class="md-nav__link">
-    Graph模式
+    Graph组件──决策图配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flow" class="md-nav__link">
+    Flow组件──流程配置
   </a>
   
 </li>
@@ -439,6 +451,36 @@
   
 </nav>
       
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E8%AE%B2%E8%A7%A3/" class="md-nav__link">
+        讲解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/" class="md-nav__link">
+        设计思路
+      </a>
     </li>
   
 
@@ -471,22 +513,37 @@
       
         <li class="md-nav__item">
   <a href="#_2" class="md-nav__link">
-    数据类型
+    快速开始
   </a>
   
-    <nav class="md-nav" aria-label="数据类型">
+    <nav class="md-nav" aria-label="快速开始">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
   <a href="#_3" class="md-nav__link">
-    基础数据类型
+    配置引入
   </a>
   
 </li>
         
           <li class="md-nav__item">
   <a href="#_4" class="md-nav__link">
-    复合数据类型
+    文件配置
+  </a>
+  
+    <nav class="md-nav" aria-label="文件配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#springrule" class="md-nav__link">
+    spring引入Rule
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#springrule_1" class="md-nav__link">
+    非spring引入Rule
   </a>
   
 </li>
@@ -495,93 +552,105 @@
     </nav>
   
 </li>
-      
-        <li class="md-nav__item">
+        
+          <li class="md-nav__item">
   <a href="#_5" class="md-nav__link">
-    操作数
+    文件配置
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
         <li class="md-nav__item">
   <a href="#_6" class="md-nav__link">
-    操作符
+    基础组件
   </a>
   
-    <nav class="md-nav" aria-label="操作符">
+    <nav class="md-nav" aria-label="基础组件">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#meta" class="md-nav__link">
+    Meta组件──元数据定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action" class="md-nav__link">
+    Action组件──行为定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#function" class="md-nav__link">
+    Function组件──扩展方法
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formulanode" class="md-nav__link">
+    FormulaNode组件──表达式配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bound" class="md-nav__link">
+    Bound组件──动态字符串
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_7" class="md-nav__link">
-    关系运算符
+    规则扩展
+  </a>
+  
+    <nav class="md-nav" aria-label="规则扩展">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ruleline" class="md-nav__link">
+    Ruleline组件──规则行
   </a>
   
 </li>
         
-          <li class="md-nav__item">
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#_8" class="md-nav__link">
-    逻辑运算符
+    流程编排组件
   </a>
   
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_9" class="md-nav__link">
-    函数的定义与调用
-  </a>
-  
-    <nav class="md-nav" aria-label="函数的定义与调用">
+    <nav class="md-nav" aria-label="流程编排组件">
       <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#getstore" class="md-nav__link">
-    getStore函数定义
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#getdiscountgetstore" class="md-nav__link">
-    getDiscount调用getStore
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_10" class="md-nav__link">
-    运算表达式
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#_11" class="md-nav__link">
-    顺序、分支、循环
-  </a>
-  
-    <nav class="md-nav" aria-label="顺序、分支、循环">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#flow" class="md-nav__link">
-    Flow模式
-  </a>
-  
-</li>
         
           <li class="md-nav__item">
   <a href="#graph" class="md-nav__link">
-    Graph模式
+    Graph组件──决策图配置
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flow" class="md-nav__link">
+    Flow组件──流程配置
   </a>
   
 </li>
@@ -605,414 +674,128 @@
                 
                   
 
-  <a href="https://github.com/example/repository/edit/master/docs/设计思路.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/example/repository/edit/master/docs/使用文档.md" title="Edit this page" class="md-content__button md-icon">
     
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
 
-<h1 id="_1">设计思路</h1>
-<p>为了完成以上代码的低代码配置化,同任何一门编程语言一样Themis对面向共性的内容进行了基础实现例如:数据类型、操作数、操作符、运算表达式、函数的定义与调用、顺序、分支、循环、赋值操作</p>
-<h2 id="_2">数据类型</h2>
-<p>Themis支持基础数据类型和复合数据类型 ,自定义对象可以采用Meta组件中的能力来扩展复杂的数据类型</p>
-<h3 id="_3">基础数据类型</h3>
-<table>
-<thead>
-<tr>
-<th>数据类型</th>
-<th>标识</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>数值</code></td>
-<td>NUMBER</td>
-</tr>
-<tr>
-<td><code>字符串</code></td>
-<td>STRING</td>
-</tr>
-<tr>
-<td><code>布尔</code></td>
-<td>BOLL</td>
-</tr>
-<tr>
-<td><code>年月日</code></td>
-<td>TIME_YMD</td>
-</tr>
-<tr>
-<td><code>时分秒</code></td>
-<td>TIME_HMS</td>
-</tr>
-<tr>
-<td><code>年月日时分秒</code></td>
-<td>TIME_YMDHMS</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_4">复合数据类型</h3>
-<p>复合数据类型提供了:<code>键值对</code>MAP、<code>列表</code>则通过complex标识 complex=N标识变量为N维数组</p>
-<h2 id="_5">操作数</h2>
-<p>操作数是程序的最小操作单元,</p>
-<div class="admonition note">
-<p class="admonition-title">我们用FormulaNode表示一个的操作数</p>
-<ul>
-<li>Themis中内置了3种基础操作数    <ul>
-<li>DataNode 表示固定值,是有配置人员手动指定的</li>
-<li>PathNode 表示变量值,可以基于jsonPath的写法从决策上下文中获取指定的变量值,标识为${xxx.yyy}</li>
-<li>FuncNode 表示方法型函数的调用,标识为%{方法名(形参1:操作数,......)}</li>
-</ul>
-</li>
-</ul>
-</div>
-<p>基于内置操作数getDiscount中的
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">getDistanceNowDays</span><span class="p">(</span><span class="n">store</span><span class="p">.</span><span class="na">startTime</span><span class="p">)</span><span class="w"></span>
+<h1 id="_1">使用文档</h1>
+<h2 id="_2">快速开始</h2>
+<h3 id="_3">配置引入</h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="nt">&lt;dependency&gt;</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="nt">&lt;groupId&gt;</span>com.goddess<span class="nt">&lt;/groupId&gt;</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    <span class="nt">&lt;artifactId&gt;</span>rule<span class="nt">&lt;/artifactId&gt;</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="nt">&lt;version&gt;</span>1.0-SNAPSHOT<span class="nt">&lt;/version&gt;</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="nt">&lt;/dependency&gt;</span>
 </code></pre></div>
-可以表示为 
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>%{getDistanceNowDays(history:${store.startTime})}
+<h3 id="_4">文件配置</h3>
+<h4 id="springrule">spring引入Rule</h4>
+<p>将RuleConfig的配置文件加入的spirng容器
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="nd">@Configuration</span><span class="w"></span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">RuleConfiguration</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="nd">@Bean</span><span class="w"></span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">RuleConfig</span><span class="w"> </span><span class="nf">getRuleConfig</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">        </span><span class="n">RuleConfig</span><span class="w"> </span><span class="n">ruleConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">        </span><span class="k">try</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="w">            </span><span class="n">ruleConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">XMLRuleConfigBuilder</span><span class="p">().</span><span class="na">build</span><span class="p">(</span><span class="s">&quot;classpath:workflow/rule-config.xml&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="w">        </span><span class="p">}</span><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">e</span><span class="p">){</span><span class="w"></span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="w">            </span><span class="n">e</span><span class="p">.</span><span class="na">printStackTrace</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">ruleConfig</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div></p>
-<h2 id="_6">操作符</h2>
-<h3 id="_7">关系运算符</h3>
-<table>
-<thead>
-<tr>
-<th>操作符</th>
-<th>操作符标识</th>
-<th>数值</th>
-<th>字符串</th>
-<th>布尔</th>
-<th>年月日</th>
-<th>时分秒</th>
-<th>年月日时分秒</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>等于</code></td>
-<td>eq</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td><code>不等于</code></td>
-<td>neq</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td><code>大于</code></td>
-<td>gt</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td><code>小于等于</code></td>
-<td>le</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td><code>小于</code></td>
-<td>lt</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td><code>大于等于</code></td>
-<td>ge</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td><code>等于(不区分大小写)</code></td>
-<td>eqd</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-<tr>
-<td><code>不等于(不区分)</code></td>
-<td>neqd</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-<td>✅</td>
-</tr>
-</tbody>
-</table>
-<h3 id="_8">逻辑运算符</h3>
-<p>Themis支持 || 或、 &amp;&amp; 且</p>
-<h2 id="_9">函数的定义与调用</h2>
-<ul>
-<li>定义与调用<ul>
-<li>例如getDiscount中调用getStore、getNewStoreDays、getDistanceNowDays被称为函数调用。</li>
-<li>getStore、getNewStoreDays、getDistanceNowDays的函数实现逻辑称为函数定义。一个函数定义后才能被调用。</li>
-</ul>
-</li>
-</ul>
-<p>函数定义我们要解决:函数名称、方法体、接受入参、入参默认值赋值、入参校验、逻辑执行、返回值ORM映射的问题   <br />
-函数调用我们要解决:调用的传参,接收返回值的问题   </p>
-<p>例如 getDiscount 中 调用 getStore 传入 storeCode 属性项 并且获取返回值赋值给store变量。 
-在Themis中getDiscount是业务规则的具体实现,属于规则的部分不属于函数调用。<br />
-getStore、getNewStoreDays为行为调用,getDistanceNowDays为方法调用<br />
-方法和行为的划分依据是从开发的角度出发的,但是两者本身没有多大的差异都是调用方法传入参数获取其返回值  </p>
+<h4 id="springrule_1">非spring引入Rule</h4>
+<h3 id="_5">文件配置</h3>
+<h2 id="_6">基础组件</h2>
+<h3 id="meta">Meta组件──元数据定义</h3>
 <div class="admonition note">
-<p class="admonition-title">方法</p>
-<p>方法是一些系统整体上的工具函数,例如:加、减、乘、除、获取时间这一类的工具函数,它们普遍具有一个特性就是逐一实现的更多的是面向开发。   </p>
+<p class="admonition-title">Meta组件是提供对元数据的管理</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">行为</p>
-<p>行为是按照统一的类型进行实现的,更多的是面向业务,例如:发送http请求、操作数据库。   </p>
-</div>
-<h3 id="getstore">getStore函数定义</h3>
-<div class="admonition note">
-<p class="admonition-title">getStore函数名称、方法体、返回值ORM映射部分采用Action表示</p>
-<table>
-<thead>
-<tr>
-<th>函数名称</th>
-<th>行为类型</th>
-<th>返参数据类型</th>
-<th>返参是否列表</th>
-<th>返回值映射</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>code</td>
-<td></td>
-<td>dataType</td>
-<td>complex</td>
-<td>mappings</td>
-</tr>
-<tr>
-<td>storeCode</td>
-<td></td>
-<td>STORE</td>
-<td>0</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>返回值映射采用Mapping表达,默认mapping采用区分大小写的属性名映射</p>
-<table>
-<thead>
-<tr>
-<th>源属性项</th>
-<th>目标属性项</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>code</td>
-<td>result</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="admonition note">
-<p class="admonition-title">getStore入参部分我们抽象为Param列表来进行表达为</p>
-<table>
-<thead>
-<tr>
-<th>入参名称</th>
-<th>必传</th>
-<th>参数数据类型</th>
-<th>是否列表</th>
-<th>默认值</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>code</td>
-<td>necessary</td>
-<td>dataType</td>
-<td>complex</td>
-<td>data</td>
-</tr>
-<tr>
-<td>storeCode</td>
-<td>true</td>
-<td>STRING</td>
-<td>0</td>
-<td>null</td>
-</tr>
-</tbody>
-</table>
-<p>上述没有默认值存在默认值的情况可以采用 Formula表达式表示默认值</p>
-</div>
-<h3 id="getdiscountgetstore">getDiscount调用getStore</h3>
-<div class="admonition note">
-<p class="admonition-title">我们抽象为Execute来进行表达为</p>
-<table>
-<thead>
-<tr>
-<th>调用名称</th>
-<th>行为名称</th>
-<th>是否接收返回值</th>
-<th>入参列表</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>code</td>
-<td>actionCode</td>
-<td>init</td>
-<td>injects</td>
-</tr>
-<tr>
-<td>store</td>
-<td>getStore</td>
-<td>true</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<p>入参映射采用Inject表达,${getStore} 为Formula表达式</p>
-<table>
-<thead>
-<tr>
-<th>形参名称</th>
-<th>实参数据</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>code</td>
-<td>data</td>
-</tr>
-<tr>
-<td>storeCode</td>
-<td>${getStore}</td>
-</tr>
-</tbody>
-</table>
-<p>补充调用流程图。  <br />
-<!-- --></p>
-</div>
-<h2 id="_10">运算表达式</h2>
-<p>Themis支持关系、优先级、逻辑运算 <br />
-运算的模型我们可以抽象为  A opention B 的形式,opention可以参考操作符部分。参考数学中 被除数 / 除数 的形式我们称A为被比较的阈值,B为阈值。 <br />
-运算过程还要支持()优先级运算。   <br />
-例如 getDiscount 函数中 表达式(store.level == Level.L_10) || (store.area.code == "JJJ")<br />
-<img alt="RUNOOB Exp" src="https://github.com/failgoddess/rule/blob/master/doc/img/exp1.png?raw=true" /></p>
-<div class="admonition note">
-<p class="admonition-title">我们采用Expression来进行表达</p>
-<table>
-<thead>
-<tr>
-<th>运算类型</th>
-<th>必传</th>
-<th>数据类型</th>
-<th>被比较的阀值</th>
-<th>阀值</th>
-<th>子运算</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>expressionType</td>
-<td>operationCode</td>
-<td>dataType</td>
-<td>cover</td>
-<td>threshold</td>
-<td>subExpression</td>
-</tr>
-</tbody>
-</table>
-<div class="highlight"><pre><span></span><code>在expressionType为关系类的时候operationCode必须为关系运算符 被比较的阀值可以采用 Formula表达式表示默认值
-在expressionType为逻辑类的时候operationCode必须为逻辑运算符 表示subExpression列表元素之间的逻辑关系
+<p>提示：参与执行过程的数据实体则可以抽象成Meta组件配置的内容 <br />
+包括了MetaClass 规则对象类、MetaProperty对象属性项、MetaEnum属性项枚举值 <br />
+具体案例如下可以将以下代码利用meta组件组件的配置进行表达 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>
 </code></pre></div>
-</div>
-<h2 id="_11">顺序、分支、循环</h2>
-<p>Themis默认有Graph和Flow两种模式不同程度上支持了三大结构</p>
-<h3 id="flow">Flow模式</h3>
-<p>在Flow模式目前仅支持顺序结构</p>
-<h3 id="graph">Graph模式</h3>
-<p>在Graph模式面对程序的三大结构我们对其有抽象为一个有向图。  </p>
-<p><img alt="RUNOOB 决策图模型" src="https://github.com/failgoddess/rule/blob/master/doc/img/决策图模型.png?raw=true" /></p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-3-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-3-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-3-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-3-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-3-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-3-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-3-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-3-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-3-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-3-10">10</a></span>
+<span class="normal"><a href="#__codelineno-3-11">11</a></span>
+<span class="normal"><a href="#__codelineno-3-12">12</a></span>
+<span class="normal"><a href="#__codelineno-3-13">13</a></span>
+<span class="normal"><a href="#__codelineno-3-14">14</a></span>
+<span class="normal"><a href="#__codelineno-3-15">15</a></span>
+<span class="normal"><a href="#__codelineno-3-16">16</a></span>
+<span class="normal"><a href="#__codelineno-3-17">17</a></span>
+<span class="normal"><a href="#__codelineno-3-18">18</a></span>
+<span class="normal"><a href="#__codelineno-3-19">19</a></span>
+<span class="normal"><a href="#__codelineno-3-20">20</a></span>
+<span class="normal"><a href="#__codelineno-3-21">21</a></span>
+<span class="normal"><a href="#__codelineno-3-22">22</a></span>
+<span class="normal"><a href="#__codelineno-3-23">23</a></span>
+<span class="normal"><a href="#__codelineno-3-24">24</a></span>
+<span class="normal"><a href="#__codelineno-3-25">25</a></span>
+<span class="normal"><a href="#__codelineno-3-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1"></a><span class="nt">&lt;metaEnums&gt;</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2"></a>    <span class="nt">&lt;metaEnum</span> <span class="na">code=</span><span class="s">&quot;storeLevel&quot;</span> <span class="na">name=</span><span class="s">&quot;门店等级&quot;</span> <span class="na">type=</span><span class="s">&quot;FIXED&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3"></a>        <span class="nt">&lt;items&gt;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4"></a>            <span class="nt">&lt;item</span> <span class="na">code=</span><span class="s">&quot;10&quot;</span> <span class="na">name=</span><span class="s">&quot;甲&quot;</span><span class="nt">&gt;&lt;/item&gt;</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5"></a>            <span class="nt">&lt;item</span> <span class="na">code=</span><span class="s">&quot;20&quot;</span> <span class="na">name=</span><span class="s">&quot;乙&quot;</span><span class="nt">&gt;&lt;/item&gt;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6"></a>            <span class="nt">&lt;item</span> <span class="na">code=</span><span class="s">&quot;30&quot;</span> <span class="na">name=</span><span class="s">&quot;丙&quot;</span><span class="nt">&gt;&lt;/item&gt;</span>
+<a id="__codelineno-3-7" name="__codelineno-3-7"></a>        <span class="nt">&lt;/items&gt;</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8"></a>    <span class="nt">&lt;/metaEnum&gt;</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9"></a><span class="nt">&lt;/metaEnums&gt;</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10"></a><span class="nt">&lt;metaClasses&gt;</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11"></a>    <span class="nt">&lt;metaClass</span> <span class="na">code=</span><span class="s">&quot;area&quot;</span> <span class="na">name=</span><span class="s">&quot;区域&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-3-12" name="__codelineno-3-12"></a>        <span class="nt">&lt;properties&gt;</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13"></a>            <span class="nt">&lt;property</span> <span class="na">code=</span><span class="s">&quot;code&quot;</span> <span class="na">name=</span><span class="s">&quot;门店编码&quot;</span> <span class="na">dataType=</span><span class="s">&quot;STRING&quot;</span> <span class="na">primary=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14"></a>            <span class="nt">&lt;property</span> <span class="na">code=</span><span class="s">&quot;name&quot;</span> <span class="na">name=</span><span class="s">&quot;门店名称&quot;</span> <span class="na">dataType=</span><span class="s">&quot;STRING&quot;</span> <span class="nt">/&gt;</span>
+<a id="__codelineno-3-15" name="__codelineno-3-15"></a>        <span class="nt">&lt;/properties&gt;</span>
+<a id="__codelineno-3-16" name="__codelineno-3-16"></a>    <span class="nt">&lt;/metaClass&gt;</span>
+<a id="__codelineno-3-17" name="__codelineno-3-17"></a>    <span class="nt">&lt;metaClass</span> <span class="na">code=</span><span class="s">&quot;store&quot;</span> <span class="na">name=</span><span class="s">&quot;门店&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-3-18" name="__codelineno-3-18"></a>        <span class="nt">&lt;properties&gt;</span>
+<a id="__codelineno-3-19" name="__codelineno-3-19"></a>            <span class="nt">&lt;property</span> <span class="na">code=</span><span class="s">&quot;code&quot;</span> <span class="na">name=</span><span class="s">&quot;门店编码&quot;</span> <span class="na">dataType=</span><span class="s">&quot;STRING&quot;</span> <span class="na">primary=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-3-20" name="__codelineno-3-20"></a>            <span class="nt">&lt;property</span> <span class="na">code=</span><span class="s">&quot;name&quot;</span> <span class="na">name=</span><span class="s">&quot;门店名称&quot;</span> <span class="na">dataType=</span><span class="s">&quot;STRING&quot;</span> <span class="nt">/&gt;</span>
+<a id="__codelineno-3-21" name="__codelineno-3-21"></a>            <span class="nt">&lt;property</span> <span class="na">code=</span><span class="s">&quot;startTime&quot;</span> <span class="na">name=</span><span class="s">&quot;开业时间&quot;</span> <span class="na">dataType=</span><span class="s">&quot;TIME_YMD&quot;</span> <span class="nt">/&gt;</span>
+<a id="__codelineno-3-22" name="__codelineno-3-22"></a>            <span class="nt">&lt;property</span> <span class="na">code=</span><span class="s">&quot;level&quot;</span> <span class="na">name=</span><span class="s">&quot;门店等级&quot;</span> <span class="na">dataType=</span><span class="s">&quot;STRING&quot;</span> <span class="na">enumCode=</span><span class="s">&quot;storeLevel&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-3-23" name="__codelineno-3-23"></a>            <span class="nt">&lt;property</span> <span class="na">code=</span><span class="s">&quot;area&quot;</span> <span class="na">name=</span><span class="s">&quot;门店所属区域&quot;</span> <span class="na">dataType=</span><span class="s">&quot;area&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-3-24" name="__codelineno-3-24"></a>        <span class="nt">&lt;/properties&gt;</span>
+<a id="__codelineno-3-25" name="__codelineno-3-25"></a>    <span class="nt">&lt;/metaClass&gt;</span>
+<a id="__codelineno-3-26" name="__codelineno-3-26"></a><span class="nt">&lt;/metaClasses&gt;</span>
+</code></pre></div></td></tr></table></div></p>
+<h3 id="action">Action组件──行为定义</h3>
 <div class="admonition note">
-<p class="admonition-title">Graph来对图中的节点和流程进行描述</p>
-<table>
-<thead>
-<tr>
-<th>编码</th>
-<th>名称</th>
-<th>第一跳</th>
-<th>分支列表</th>
-<th>结果列表</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>code</td>
-<td>name</td>
-<td>firstBranchCode</td>
-<td>branches</td>
-<td>results</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>在图中我们有三大核心元素 分支Branch、链接Link、结果Result;<ul>
-<li>每个规则都至少有一个分支,作为图的入口[ <code>第一跳</code> ] </li>
-<li>链接属于分支的子属性用于链接分支与分支或者分支与结果,链接起到向后跳转的作用</li>
-<li>结果表示流程图的终结符,作为图的出口</li>
-</ul>
-</li>
-</ul>
+<p class="admonition-title">这是 note 类型的提示框</p>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Branch是分支结构的描述</p>
-<table>
-<thead>
-<tr>
-<th>编码</th>
-<th>名称</th>
-<th>执行列表</th>
-<th>链接列表</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>code</td>
-<td>name</td>
-<td>executes</td>
-<td>links</td>
-</tr>
-</tbody>
-</table>
+<p>提示：更多精彩内容记得关注我啊</p>
+<div class="admonition success">
+<p class="admonition-title">这是 success 类型的提示框</p>
 </div>
-<p><img alt="RUNOOB 决策图时序图" src="https://github.com/failgoddess/rule/blob/master/doc/决策图.png?raw=true" /></p>
+<p>成功！</p>
+<div class="admonition failure">
+<p class="admonition-title">这是 failure 类型的提示框</p>
+</div>
+<p>失败！</p>
+<div class="admonition bug">
+<p class="admonition-title">这是 bug 类型的提示框</p>
+</div>
+<p>发现一个 bug，请尽快修复！</p>
+<h3 id="function">Function组件──扩展方法</h3>
+<h3 id="formulanode">FormulaNode组件──表达式配置</h3>
+<h3 id="bound">Bound组件──动态字符串</h3>
+<h2 id="_7">规则扩展</h2>
+<h3 id="ruleline">Ruleline组件──规则行</h3>
+<h2 id="_8">流程编排组件</h2>
+<h3 id="graph">Graph组件──决策图配置</h3>
+<h3 id="flow">Flow组件──流程配置</h3>
 
 
 
@@ -1033,7 +816,7 @@ getStore、getNewStoreDays为行为调用,getDistanceNowDays为方法调用<br /
     <nav class="md-footer__inner md-grid" aria-label="Footer" >
       
         
-        <a href="../%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 使用文档" rel="prev">
+        <a href=".." class="md-footer__link md-footer__link--prev" aria-label="Previous: 主页" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -1042,11 +825,26 @@ getStore、getNewStoreDays为行为调用,getDistanceNowDays为方法调用<br /
               <span class="md-footer__direction">
                 Previous
               </span>
-              使用文档
+              主页
             </div>
           </div>
         </a>
       
+      
+        
+        <a href="../%E8%AE%B2%E8%A7%A3/" class="md-footer__link md-footer__link--next" aria-label="Next: 讲解" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              讲解
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
       
     </nav>
   

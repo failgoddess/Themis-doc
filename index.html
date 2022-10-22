@@ -328,6 +328,21 @@
   
   
     <li class="md-nav__item">
+      <a href="%E8%AE%B2%E8%A7%A3/" class="md-nav__link">
+        讲解
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
       <a href="%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/" class="md-nav__link">
         设计思路
       </a>
@@ -405,20 +420,21 @@
 <div class="admonition note">
 <p class="admonition-title">在介绍Themis之前我们先来看一段常见的业务需求和如何实现</p>
 <p>例如在前台下单前（知道用户、门店、金额）需要获取可以享受多少折扣  </p>
-</div>
 <ul>
 <li>
-<p>业务规则是 </p>
 <ol>
 <li>门店等级为甲级 或者 门店所属区域为京津冀区域 则 折扣为7折 .</li>
 <li>否则 门店为新店 则 折扣为8折 ,但是开业多少天内的门店为新店采用公参配置.</li>
 <li>否则 订单金额大于10000 折扣为9折.</li>
 <li>均不满足则不享受折扣 .</li>
 </ol>
+<p>业务规则是 </p>
 <p>一个枚举类:Level表示门店等级 分别为10甲20乙30丙<br />
 两个实体类:Area表示区域、Store表示门店,其中门店中存在一个属性项area数据类型为区域对象  </p>
 </li>
 </ul>
+</div>
+<p>实体定义用于存储业务中用到的数据实体</p>
 <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
 <span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
 <span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
@@ -552,54 +568,62 @@
 <span class="normal"><a href="#__codelineno-1-45">45</a></span>
 <span class="normal"><a href="#__codelineno-1-46">46</a></span>
 <span class="normal"><a href="#__codelineno-1-47">47</a></span>
-<span class="normal"><a href="#__codelineno-1-48">48</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="cm">/**</span>
+<span class="normal"><a href="#__codelineno-1-48">48</a></span>
+<span class="normal"><a href="#__codelineno-1-49">49</a></span>
+<span class="normal"><a href="#__codelineno-1-50">50</a></span>
+<span class="normal"><a href="#__codelineno-1-51">51</a></span>
+<span class="normal"><a href="#__codelineno-1-52">52</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="cm">/**</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="cm"> * 下单相关</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="cm"> */</span><span class="w"></span>
 <a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CreateOrder</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-5" name="__codelineno-1-5"></a>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="c1">//定义一个下单计算折扣方法</span><span class="w"></span>
 <a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="nf">getDiscount</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userCode</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">storeCode</span><span class="p">,</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">        </span><span class="k">if</span><span class="p">(</span><span class="n">storeCode</span><span class="o">==</span><span class="kc">null</span><span class="o">||</span><span class="n">storeCode</span><span class="o">==</span><span class="err">&#39;&#39;</span><span class="p">){</span><span class="w"></span>
-<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">        </span><span class="n">Store</span><span class="w"> </span><span class="n">store</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getStore</span><span class="p">(</span><span class="n">storeCode</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">store</span><span class="p">.</span><span class="na">level</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Level</span><span class="p">.</span><span class="na">L_10</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">store</span><span class="p">.</span><span class="na">area</span><span class="p">.</span><span class="na">code</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;JJJ&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">        </span><span class="c1">//根据门店编码获取门店的完整信息</span><span class="w"></span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">        </span><span class="n">Store</span><span class="w"> </span><span class="n">store</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getStore</span><span class="p">(</span><span class="n">storeCode</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">        </span><span class="c1">//(门店、等级 == 甲 )或 (门店、区域、编码 == 京津冀)</span><span class="w"></span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">store</span><span class="p">.</span><span class="na">level</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Level</span><span class="p">.</span><span class="na">L_10</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">store</span><span class="p">.</span><span class="na">area</span><span class="p">.</span><span class="na">code</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;JJJ&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">            </span><span class="c1">//结果7折</span><span class="w"></span>
 <a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;0.7&quot;</span><span class="p">);</span><span class="w"></span>
 <a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">day</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getNewStoreDays</span><span class="p">();</span><span class="w"></span>
-<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">getDistanceNowDays</span><span class="p">(</span><span class="n">store</span><span class="p">.</span><span class="na">startTime</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;0.8&quot;</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">amount</span><span class="o">&gt;</span><span class="mi">10000</span><span class="p">){</span><span class="w"></span>
-<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;0.9&quot;</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-20" name="__codelineno-1-20"></a>
-<a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-23" name="__codelineno-1-23"></a>
-<a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getNewStoreDays</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">365</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">        </span><span class="c1">//获取 具体新店天数</span><span class="w"></span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">day</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getNewStoreDays</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">        </span><span class="c1">//getDistanceNowDays计算开业时间距今多少天 小于 新店天数</span><span class="w"></span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">getDistanceNowDays</span><span class="p">(</span><span class="n">store</span><span class="p">.</span><span class="na">startTime</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">            </span><span class="c1">//结果8折</span><span class="w"></span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;0.8&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">amount</span><span class="o">&gt;</span><span class="mi">10000</span><span class="p">){</span><span class="c1">//金额 大于 10000</span><span class="w"></span>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">            </span><span class="c1">//结果9折</span><span class="w"></span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;0.9&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="w">        </span><span class="c1">//结果不打折</span><span class="w"></span>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">);</span><span class="w"></span>
 <a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
 <a id="__codelineno-1-27" name="__codelineno-1-27"></a>
-<a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getDistanceNowDays</span><span class="p">(</span><span class="n">LocalDate</span><span class="w"> </span><span class="n">history</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="w">        </span><span class="n">Period</span><span class="w"> </span><span class="n">period</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Period</span><span class="p">.</span><span class="na">between</span><span class="p">(</span><span class="n">history</span><span class="p">,</span><span class="w"> </span><span class="n">LocalDate</span><span class="p">.</span><span class="na">now</span><span class="p">());</span><span class="w"></span>
-<a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">period</span><span class="p">.</span><span class="na">getDays</span><span class="p">();</span><span class="w"></span>
-<a id="__codelineno-1-31" name="__codelineno-1-31"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-32" name="__codelineno-1-32"></a>
-<a id="__codelineno-1-33" name="__codelineno-1-33"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Store</span><span class="w"> </span><span class="nf">getStore</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">storeCode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-34" name="__codelineno-1-34"></a><span class="w">        </span><span class="n">Store</span><span class="w"> </span><span class="n">store</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Store</span><span class="p">();</span><span class="w"></span>
-<a id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="w">        </span><span class="n">store</span><span class="p">.</span><span class="na">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1002&quot;</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-36" name="__codelineno-1-36"></a><span class="w">        </span><span class="n">store</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;XX门店&quot;</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-37" name="__codelineno-1-37"></a><span class="w">        </span><span class="n">store</span><span class="p">.</span><span class="na">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Level</span><span class="p">.</span><span class="na">L_20</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-38" name="__codelineno-1-38"></a><span class="w">        </span><span class="n">store</span><span class="p">.</span><span class="na">area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getArea</span><span class="p">(</span><span class="s">&quot;JJJ&quot;</span><span class="p">);</span><span class="w"></span>
-<a id="__codelineno-1-39" name="__codelineno-1-39"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">store</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-40" name="__codelineno-1-40"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-41" name="__codelineno-1-41"></a>
-<a id="__codelineno-1-42" name="__codelineno-1-42"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Area</span><span class="w"> </span><span class="nf">getArea</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">areaCode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<a id="__codelineno-1-43" name="__codelineno-1-43"></a><span class="w">        </span><span class="n">Area</span><span class="w"> </span><span class="n">area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Area</span><span class="p">();</span><span class="w"></span>
-<a id="__codelineno-1-44" name="__codelineno-1-44"></a><span class="w">        </span><span class="n">area</span><span class="p">.</span><span class="na">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;JJJ&quot;</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-45" name="__codelineno-1-45"></a><span class="w">        </span><span class="n">area</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;京津冀&quot;</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-46" name="__codelineno-1-46"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">area</span><span class="p">;</span><span class="w"></span>
-<a id="__codelineno-1-47" name="__codelineno-1-47"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
-<a id="__codelineno-1-48" name="__codelineno-1-48"></a><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getNewStoreDays</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">365</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-31" name="__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getDistanceNowDays</span><span class="p">(</span><span class="n">LocalDate</span><span class="w"> </span><span class="n">history</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-33" name="__codelineno-1-33"></a><span class="w">        </span><span class="n">Period</span><span class="w"> </span><span class="n">period</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Period</span><span class="p">.</span><span class="na">between</span><span class="p">(</span><span class="n">history</span><span class="p">,</span><span class="w"> </span><span class="n">LocalDate</span><span class="p">.</span><span class="na">now</span><span class="p">());</span><span class="w"></span>
+<a id="__codelineno-1-34" name="__codelineno-1-34"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">period</span><span class="p">.</span><span class="na">getDays</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-36" name="__codelineno-1-36"></a>
+<a id="__codelineno-1-37" name="__codelineno-1-37"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Store</span><span class="w"> </span><span class="nf">getStore</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">storeCode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-38" name="__codelineno-1-38"></a><span class="w">        </span><span class="n">Store</span><span class="w"> </span><span class="n">store</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Store</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-1-39" name="__codelineno-1-39"></a><span class="w">        </span><span class="n">store</span><span class="p">.</span><span class="na">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1002&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-40" name="__codelineno-1-40"></a><span class="w">        </span><span class="n">store</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;XX门店&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-41" name="__codelineno-1-41"></a><span class="w">        </span><span class="n">store</span><span class="p">.</span><span class="na">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Level</span><span class="p">.</span><span class="na">L_20</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-42" name="__codelineno-1-42"></a><span class="w">        </span><span class="n">store</span><span class="p">.</span><span class="na">area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getArea</span><span class="p">(</span><span class="s">&quot;JJJ&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-1-43" name="__codelineno-1-43"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">store</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-44" name="__codelineno-1-44"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-45" name="__codelineno-1-45"></a>
+<a id="__codelineno-1-46" name="__codelineno-1-46"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Area</span><span class="w"> </span><span class="nf">getArea</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">areaCode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-47" name="__codelineno-1-47"></a><span class="w">        </span><span class="n">Area</span><span class="w"> </span><span class="n">area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Area</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-1-48" name="__codelineno-1-48"></a><span class="w">        </span><span class="n">area</span><span class="p">.</span><span class="na">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;JJJ&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-49" name="__codelineno-1-49"></a><span class="w">        </span><span class="n">area</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;京津冀&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-50" name="__codelineno-1-50"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">area</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-51" name="__codelineno-1-51"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-52" name="__codelineno-1-52"></a><span class="p">}</span><span class="w"></span>
 </code></pre></div></td></tr></table></div>
 
 

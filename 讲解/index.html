@@ -1,0 +1,1245 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="TestHub">
+      
+      
+        <meta name="author" content="vinc">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.0, mkdocs-material-8.5.6">
+    
+    
+      
+        <title>讲解 - Themis</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.20d9efc8.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+      
+      
+  
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+    
+    
+  
+  
+  <style>:root{--md-admonition-icon--note:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 7.775V2.75a.25.25 0 0 1 .25-.25h5.025a.25.25 0 0 1 .177.073l6.25 6.25a.25.25 0 0 1 0 .354l-5.025 5.025a.25.25 0 0 1-.354 0l-6.25-6.25a.25.25 0 0 1-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 0 1 0 2.474l-5.026 5.026a1.75 1.75 0 0 1-2.474 0l-6.25-6.25A1.75 1.75 0 0 1 1 7.775zM6 5a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/></svg>');--md-admonition-icon--abstract:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M2.5 1.75a.25.25 0 0 1 .25-.25h8.5a.25.25 0 0 1 .25.25v7.736a.75.75 0 1 0 1.5 0V1.75A1.75 1.75 0 0 0 11.25 0h-8.5A1.75 1.75 0 0 0 1 1.75v11.5c0 .966.784 1.75 1.75 1.75h3.17a.75.75 0 0 0 0-1.5H2.75a.25.25 0 0 1-.25-.25V1.75zM4.75 4a.75.75 0 0 0 0 1.5h4.5a.75.75 0 0 0 0-1.5h-4.5zM4 7.75A.75.75 0 0 1 4.75 7h2a.75.75 0 0 1 0 1.5h-2A.75.75 0 0 1 4 7.75zm11.774 3.537a.75.75 0 0 0-1.048-1.074L10.7 14.145 9.281 12.72a.75.75 0 0 0-1.062 1.058l1.943 1.95a.75.75 0 0 0 1.055.008l4.557-4.45z"/></svg>');--md-admonition-icon--info:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm6.5-.25A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75zM8 6a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/></svg>');--md-admonition-icon--tip:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.499.75a.75.75 0 0 1 1.5 0v.996C5.9 2.903 6.793 3.65 7.662 4.376l.24.202c-.036-.694.055-1.422.426-2.163C9.1.873 10.794-.045 12.622.26 14.408.558 16 1.94 16 4.25c0 1.278-.954 2.575-2.44 2.734l.146.508.065.22c.203.701.412 1.455.476 2.226.142 1.707-.4 3.03-1.487 3.898C11.714 14.671 10.27 15 8.75 15h-6a.75.75 0 0 1 0-1.5h1.376a4.489 4.489 0 0 1-.563-1.191 3.833 3.833 0 0 1-.05-2.063 4.636 4.636 0 0 1-2.025-.293.75.75 0 1 1 .525-1.406c1.357.507 2.376-.006 2.698-.318l.009-.01a.748.748 0 0 1 1.06 0 .75.75 0 0 1-.012 1.074c-.912.92-.992 1.835-.768 2.586.221.74.745 1.337 1.196 1.621H8.75c1.343 0 2.398-.296 3.074-.836.635-.507 1.036-1.31.928-2.602-.05-.603-.216-1.224-.422-1.93l-.064-.221c-.12-.407-.246-.84-.353-1.29a2.404 2.404 0 0 1-.507-.441 3.063 3.063 0 0 1-.633-1.248.75.75 0 0 1 1.455-.364c.046.185.144.436.31.627.146.168.353.305.712.305.738 0 1.25-.615 1.25-1.25 0-1.47-.95-2.315-2.123-2.51-1.172-.196-2.227.387-2.706 1.345-.46.92-.27 1.774.019 3.062l.042.19a.753.753 0 0 1 .01.05c.348.443.666.949.94 1.553a.75.75 0 1 1-1.365.62c-.553-1.217-1.32-1.94-2.3-2.768a85.08 85.08 0 0 0-.317-.265c-.814-.68-1.75-1.462-2.692-2.619a3.74 3.74 0 0 0-1.023.88c-.406.495-.663 1.036-.722 1.508.116.122.306.21.591.239.388.038.797-.06 1.032-.19a.75.75 0 0 1 .728 1.31c-.515.287-1.23.439-1.906.373-.682-.067-1.473-.38-1.879-1.193L.75 5.677V5.5c0-.984.48-1.94 1.077-2.664.46-.559 1.05-1.055 1.673-1.353V.75z"/></svg>');--md-admonition-icon--success:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M13.78 4.22a.75.75 0 0 1 0 1.06l-7.25 7.25a.75.75 0 0 1-1.06 0L2.22 9.28a.75.75 0 0 1 1.06-1.06L6 10.94l6.72-6.72a.75.75 0 0 1 1.06 0z"/></svg>');--md-admonition-icon--question:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13zM0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm9 3a1 1 0 1 1-2 0 1 1 0 0 1 2 0zM6.92 6.085c.081-.16.19-.299.34-.398.145-.097.371-.187.74-.187.28 0 .553.087.738.225A.613.613 0 0 1 9 6.25c0 .177-.04.264-.077.318a.956.956 0 0 1-.277.245c-.076.051-.158.1-.258.161l-.007.004a7.728 7.728 0 0 0-.313.195 2.416 2.416 0 0 0-.692.661.75.75 0 0 0 1.248.832.956.956 0 0 1 .276-.245 6.3 6.3 0 0 1 .26-.16l.006-.004c.093-.057.204-.123.313-.195.222-.149.487-.355.692-.662.214-.32.329-.702.329-1.15 0-.76-.36-1.348-.863-1.725A2.76 2.76 0 0 0 8 4c-.631 0-1.155.16-1.572.438-.413.276-.68.638-.849.977a.75.75 0 1 0 1.342.67z"/></svg>');--md-admonition-icon--warning:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.22 1.754a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368L8.22 1.754zm-1.763-.707c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575L6.457 1.047zM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm-.25-5.25a.75.75 0 0 0-1.5 0v2.5a.75.75 0 0 0 1.5 0v-2.5z"/></svg>');--md-admonition-icon--failure:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M3.404 12.596a6.5 6.5 0 1 1 9.192-9.192 6.5 6.5 0 0 1-9.192 9.192zM2.344 2.343a8 8 0 1 0 11.313 11.314A8 8 0 0 0 2.343 2.343zM6.03 4.97a.75.75 0 0 0-1.06 1.06L6.94 8 4.97 9.97a.75.75 0 1 0 1.06 1.06L8 9.06l1.97 1.97a.75.75 0 1 0 1.06-1.06L9.06 8l1.97-1.97a.75.75 0 1 0-1.06-1.06L8 6.94 6.03 4.97z"/></svg>');--md-admonition-icon--danger:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M10.561 1.5a.016.016 0 0 0-.01.004L3.286 8.571A.25.25 0 0 0 3.462 9H6.75a.75.75 0 0 1 .694 1.034l-1.713 4.188 6.982-6.793A.25.25 0 0 0 12.538 7H9.25a.75.75 0 0 1-.683-1.06l2.008-4.418.003-.006a.02.02 0 0 0-.004-.009.02.02 0 0 0-.006-.006L10.56 1.5zM9.504.43a1.516 1.516 0 0 1 2.437 1.713L10.415 5.5h2.123c1.57 0 2.346 1.909 1.22 3.004l-7.34 7.142a1.25 1.25 0 0 1-.871.354h-.302a1.25 1.25 0 0 1-1.157-1.723L5.633 10.5H3.462c-1.57 0-2.346-1.909-1.22-3.004L9.503.429z"/></svg>');--md-admonition-icon--bug:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M4.72.22a.75.75 0 0 1 1.06 0l1 .999a3.492 3.492 0 0 1 2.441 0l.999-1a.75.75 0 1 1 1.06 1.061l-.775.776c.616.63.995 1.493.995 2.444v.327c0 .1-.009.197-.025.292.408.14.764.392 1.029.722l1.968-.787a.75.75 0 0 1 .556 1.392L13 7.258V9h2.25a.75.75 0 0 1 0 1.5H13v.5c0 .409-.049.806-.141 1.186l2.17.868a.75.75 0 0 1-.557 1.392l-2.184-.873A4.997 4.997 0 0 1 8 16a4.997 4.997 0 0 1-4.288-2.427l-2.183.873a.75.75 0 0 1-.558-1.392l2.17-.868A5.013 5.013 0 0 1 3 11v-.5H.75a.75.75 0 0 1 0-1.5H3V7.258L.971 6.446a.75.75 0 0 1 .558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.684 1.684 0 0 1-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 0 1 0-1.06zM6.173 5h3.654A.173.173 0 0 0 10 4.827V4.5a2 2 0 1 0-4 0v.327c0 .096.077.173.173.173zM5.25 6.5a.75.75 0 0 0-.75.75V11a3.5 3.5 0 1 0 7 0V7.25a.75.75 0 0 0-.75-.75h-5.5z"/></svg>');--md-admonition-icon--example:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M5 5.782V2.5h-.25a.75.75 0 0 1 0-1.5h6.5a.75.75 0 0 1 0 1.5H11v3.282l3.666 5.76C15.619 13.04 14.543 15 12.767 15H3.233c-1.776 0-2.852-1.96-1.899-3.458L5 5.782zM9.5 2.5h-3V6a.75.75 0 0 1-.117.403L4.73 9h6.54L9.617 6.403A.75.75 0 0 1 9.5 6V2.5zm-6.9 9.847L3.775 10.5h8.45l1.175 1.847a.75.75 0 0 1-.633 1.153H3.233a.75.75 0 0 1-.633-1.153z"/></svg>');--md-admonition-icon--quote:url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M1.75 2.5a.75.75 0 0 0 0 1.5h10.5a.75.75 0 0 0 0-1.5H1.75zm4 5a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5zm0 5a.75.75 0 0 0 0 1.5h8.5a.75.75 0 0 0 0-1.5h-8.5zM2.5 7.75a.75.75 0 0 0-1.5 0v6a.75.75 0 0 0 1.5 0v-6z"/></svg>');}</style>
+
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="none" data-md-color-accent="none">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Themis" class="md-header__button md-logo" aria-label="Themis" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Themis
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              讲解
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/example/repository/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Themis" class="md-nav__button md-logo" aria-label="Themis" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    Themis
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/example/repository/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    GitHub
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        主页
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" class="md-nav__link">
+        使用文档
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          讲解
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        讲解
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    开发一个需求
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    如何配置
+  </a>
+  
+    <nav class="md-nav" aria-label="如何配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    门店、区域、等级枚举实体
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    折扣规则的配置
+  </a>
+  
+    <nav class="md-nav" aria-label="折扣规则的配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#action" class="md-nav__link">
+    Action行为定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#param" class="md-nav__link">
+    Param入参
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formula" class="md-nav__link">
+    Formula表达式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph" class="md-nav__link">
+    Graph决策图
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch" class="md-nav__link">
+    Branch分支
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execute" class="md-nav__link">
+    Execute执行行为
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link" class="md-nav__link">
+    Link链接
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expression" class="md-nav__link">
+    Expression表达式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/" class="md-nav__link">
+        设计思路
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    开发一个需求
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    如何配置
+  </a>
+  
+    <nav class="md-nav" aria-label="如何配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    门店、区域、等级枚举实体
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    折扣规则的配置
+  </a>
+  
+    <nav class="md-nav" aria-label="折扣规则的配置">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#action" class="md-nav__link">
+    Action行为定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#param" class="md-nav__link">
+    Param入参
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#formula" class="md-nav__link">
+    Formula表达式
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#graph" class="md-nav__link">
+    Graph决策图
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branch" class="md-nav__link">
+    Branch分支
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#execute" class="md-nav__link">
+    Execute执行行为
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#link" class="md-nav__link">
+    Link链接
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#expression" class="md-nav__link">
+    Expression表达式
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <a href="https://github.com/example/repository/edit/master/docs/讲解.md" title="Edit this page" class="md-content__button md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
+  </a>
+
+
+<h1 id="_1">讲解</h1>
+<h2 id="_2">开发一个需求</h2>
+<div class="admonition note">
+<p class="admonition-title">在介绍Themis之前我们先来看一段常见的业务需求和如何实现</p>
+<p>例如在前台下单前（知道用户、门店、金额）需要获取可以享受多少折扣  </p>
+<ul>
+<li>业务规则是 <ol>
+<li>门店等级为甲级 或者 门店所属区域为京津冀区域 则 折扣为7折 .</li>
+<li>否则 门店为新店 则 折扣为8折 ,但是开业多少天内的门店为新店采用公参配置.</li>
+<li>否则 订单金额大于10000 折扣为9折.</li>
+<li>均不满足则不享受折扣 .</li>
+</ol>
+</li>
+</ul>
+<p><img alt="RUNOOB 决策图时序图" src="https://github.com/failgoddess/rule/blob/master/doc/img/%E4%B8%9A%E5%8A%A1%E8%A1%A8%E8%BE%BE.png?raw=true" /></p>
+</div>
+<p>实体定义用于存储业务中用到的数据实体. <br />
+一个枚举类:Level表示门店等级 分别为10甲20乙30丙<br />
+两个实体类:Area表示区域、Store表示门店,其中门店中存在一个属性项area数据类型为区域对象 </p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-0-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-0-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-0-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-0-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-0-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-0-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-0-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-0-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-0-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-0-10">10</a></span>
+<span class="normal"><a href="#__codelineno-0-11">11</a></span>
+<span class="normal"><a href="#__codelineno-0-12">12</a></span>
+<span class="normal"><a href="#__codelineno-0-13">13</a></span>
+<span class="normal"><a href="#__codelineno-0-14">14</a></span>
+<span class="normal"><a href="#__codelineno-0-15">15</a></span>
+<span class="normal"><a href="#__codelineno-0-16">16</a></span>
+<span class="normal"><a href="#__codelineno-0-17">17</a></span>
+<span class="normal"><a href="#__codelineno-0-18">18</a></span>
+<span class="normal"><a href="#__codelineno-0-19">19</a></span>
+<span class="normal"><a href="#__codelineno-0-20">20</a></span>
+<span class="normal"><a href="#__codelineno-0-21">21</a></span>
+<span class="normal"><a href="#__codelineno-0-22">22</a></span>
+<span class="normal"><a href="#__codelineno-0-23">23</a></span>
+<span class="normal"><a href="#__codelineno-0-24">24</a></span>
+<span class="normal"><a href="#__codelineno-0-25">25</a></span>
+<span class="normal"><a href="#__codelineno-0-26">26</a></span>
+<span class="normal"><a href="#__codelineno-0-27">27</a></span>
+<span class="normal"><a href="#__codelineno-0-28">28</a></span>
+<span class="normal"><a href="#__codelineno-0-29">29</a></span>
+<span class="normal"><a href="#__codelineno-0-30">30</a></span>
+<span class="normal"><a href="#__codelineno-0-31">31</a></span>
+<span class="normal"><a href="#__codelineno-0-32">32</a></span>
+<span class="normal"><a href="#__codelineno-0-33">33</a></span>
+<span class="normal"><a href="#__codelineno-0-34">34</a></span>
+<span class="normal"><a href="#__codelineno-0-35">35</a></span>
+<span class="normal"><a href="#__codelineno-0-36">36</a></span>
+<span class="normal"><a href="#__codelineno-0-37">37</a></span>
+<span class="normal"><a href="#__codelineno-0-38">38</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1"></a><span class="cm">/**</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2"></a><span class="cm"> * 区域</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3"></a><span class="cm"> */</span><span class="w"></span>
+<a id="__codelineno-0-4" name="__codelineno-0-4"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Area</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-5" name="__codelineno-0-5"></a><span class="w">    </span><span class="c1">//编码</span><span class="w"></span>
+<a id="__codelineno-0-6" name="__codelineno-0-6"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">code</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-7" name="__codelineno-0-7"></a><span class="w">    </span><span class="c1">//区域名称</span><span class="w"></span>
+<a id="__codelineno-0-8" name="__codelineno-0-8"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-9" name="__codelineno-0-9"></a><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-0-10" name="__codelineno-0-10"></a><span class="cm">/**</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11"></a><span class="cm"> * 门店等级枚举</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12"></a><span class="cm"> */</span><span class="w"></span>
+<a id="__codelineno-0-13" name="__codelineno-0-13"></a><span class="kd">public</span><span class="w"> </span><span class="kd">enum</span><span class="w"> </span><span class="n">Level</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-14" name="__codelineno-0-14"></a><span class="w">    </span><span class="n">L_10</span><span class="p">(</span><span class="s">&quot;10&quot;</span><span class="p">,</span><span class="s">&quot;甲&quot;</span><span class="p">),</span><span class="w"></span>
+<a id="__codelineno-0-15" name="__codelineno-0-15"></a><span class="w">    </span><span class="n">L_20</span><span class="p">(</span><span class="s">&quot;20&quot;</span><span class="p">,</span><span class="s">&quot;乙&quot;</span><span class="p">),</span><span class="w"></span>
+<a id="__codelineno-0-16" name="__codelineno-0-16"></a><span class="w">    </span><span class="n">L_30</span><span class="p">(</span><span class="s">&quot;30&quot;</span><span class="p">,</span><span class="s">&quot;丙&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-0-17" name="__codelineno-0-17"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">code</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-18" name="__codelineno-0-18"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-19" name="__codelineno-0-19"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="nf">Level</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">code</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-20" name="__codelineno-0-20"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">code</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-21" name="__codelineno-0-21"></a><span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-22" name="__codelineno-0-22"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-0-23" name="__codelineno-0-23"></a><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-0-24" name="__codelineno-0-24"></a><span class="cm">/**</span>
+<a id="__codelineno-0-25" name="__codelineno-0-25"></a><span class="cm"> * 门店</span>
+<a id="__codelineno-0-26" name="__codelineno-0-26"></a><span class="cm"> */</span><span class="w"></span>
+<a id="__codelineno-0-27" name="__codelineno-0-27"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">Store</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-0-28" name="__codelineno-0-28"></a><span class="w">    </span><span class="c1">//编码</span><span class="w"></span>
+<a id="__codelineno-0-29" name="__codelineno-0-29"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">code</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-30" name="__codelineno-0-30"></a><span class="w">    </span><span class="c1">//门店名称</span><span class="w"></span>
+<a id="__codelineno-0-31" name="__codelineno-0-31"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">name</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-32" name="__codelineno-0-32"></a><span class="w">    </span><span class="c1">//开业时间</span><span class="w"></span>
+<a id="__codelineno-0-33" name="__codelineno-0-33"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">LocalDate</span><span class="w"> </span><span class="n">startTime</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-34" name="__codelineno-0-34"></a><span class="w">    </span><span class="c1">//门店等级</span><span class="w"></span>
+<a id="__codelineno-0-35" name="__codelineno-0-35"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Level</span><span class="w"> </span><span class="n">level</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-36" name="__codelineno-0-36"></a><span class="w">    </span><span class="c1">//门店所属区域</span><span class="w"></span>
+<a id="__codelineno-0-37" name="__codelineno-0-37"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Area</span><span class="w"> </span><span class="n">area</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-0-38" name="__codelineno-0-38"></a><span class="p">}</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<ul>
+<li>业务代码将可以采用如下实现<ul>
+<li>getDiscount 方法为获取折扣方法 入参 用户编码、门店编码、金额 返回值是具体折扣</li>
+<li>getNewStoreDays 方法为获取新店天数的公参配置 返回值是具体新店天数</li>
+<li>getDistanceNowDays 方法工具方法为获取一个时间到现在的天数  入参为时间  返回值为天数</li>
+<li>getStore 方法为根据门店编码获取门店完整信息 入参门店编码 返回值 门店对象</li>
+<li>getArea 方法为根据区域编码获取区域完整信息 入参区域编码 返回值 区域对象</li>
+</ul>
+</li>
+</ul>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-1-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-1-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-1-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-1-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-1-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-1-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-1-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-1-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-1-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-1-10">10</a></span>
+<span class="normal"><a href="#__codelineno-1-11">11</a></span>
+<span class="normal"><a href="#__codelineno-1-12">12</a></span>
+<span class="normal"><a href="#__codelineno-1-13">13</a></span>
+<span class="normal"><a href="#__codelineno-1-14">14</a></span>
+<span class="normal"><a href="#__codelineno-1-15">15</a></span>
+<span class="normal"><a href="#__codelineno-1-16">16</a></span>
+<span class="normal"><a href="#__codelineno-1-17">17</a></span>
+<span class="normal"><a href="#__codelineno-1-18">18</a></span>
+<span class="normal"><a href="#__codelineno-1-19">19</a></span>
+<span class="normal"><a href="#__codelineno-1-20">20</a></span>
+<span class="normal"><a href="#__codelineno-1-21">21</a></span>
+<span class="normal"><a href="#__codelineno-1-22">22</a></span>
+<span class="normal"><a href="#__codelineno-1-23">23</a></span>
+<span class="normal"><a href="#__codelineno-1-24">24</a></span>
+<span class="normal"><a href="#__codelineno-1-25">25</a></span>
+<span class="normal"><a href="#__codelineno-1-26">26</a></span>
+<span class="normal"><a href="#__codelineno-1-27">27</a></span>
+<span class="normal"><a href="#__codelineno-1-28">28</a></span>
+<span class="normal"><a href="#__codelineno-1-29">29</a></span>
+<span class="normal"><a href="#__codelineno-1-30">30</a></span>
+<span class="normal"><a href="#__codelineno-1-31">31</a></span>
+<span class="normal"><a href="#__codelineno-1-32">32</a></span>
+<span class="normal"><a href="#__codelineno-1-33">33</a></span>
+<span class="normal"><a href="#__codelineno-1-34">34</a></span>
+<span class="normal"><a href="#__codelineno-1-35">35</a></span>
+<span class="normal"><a href="#__codelineno-1-36">36</a></span>
+<span class="normal"><a href="#__codelineno-1-37">37</a></span>
+<span class="normal"><a href="#__codelineno-1-38">38</a></span>
+<span class="normal"><a href="#__codelineno-1-39">39</a></span>
+<span class="normal"><a href="#__codelineno-1-40">40</a></span>
+<span class="normal"><a href="#__codelineno-1-41">41</a></span>
+<span class="normal"><a href="#__codelineno-1-42">42</a></span>
+<span class="normal"><a href="#__codelineno-1-43">43</a></span>
+<span class="normal"><a href="#__codelineno-1-44">44</a></span>
+<span class="normal"><a href="#__codelineno-1-45">45</a></span>
+<span class="normal"><a href="#__codelineno-1-46">46</a></span>
+<span class="normal"><a href="#__codelineno-1-47">47</a></span>
+<span class="normal"><a href="#__codelineno-1-48">48</a></span>
+<span class="normal"><a href="#__codelineno-1-49">49</a></span>
+<span class="normal"><a href="#__codelineno-1-50">50</a></span>
+<span class="normal"><a href="#__codelineno-1-51">51</a></span>
+<span class="normal"><a href="#__codelineno-1-52">52</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1"></a><span class="cm">/**</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2"></a><span class="cm"> * 下单相关</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3"></a><span class="cm"> */</span><span class="w"></span>
+<a id="__codelineno-1-4" name="__codelineno-1-4"></a><span class="kd">public</span><span class="w"> </span><span class="kd">class</span> <span class="nc">CreateOrder</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-5" name="__codelineno-1-5"></a><span class="w">    </span><span class="c1">//定义一个下单计算折扣方法</span><span class="w"></span>
+<a id="__codelineno-1-6" name="__codelineno-1-6"></a><span class="w">    </span><span class="kd">public</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="nf">getDiscount</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">userCode</span><span class="p">,</span><span class="w"> </span><span class="n">String</span><span class="w"> </span><span class="n">storeCode</span><span class="p">,</span><span class="w"> </span><span class="n">BigDecimal</span><span class="w"> </span><span class="n">amount</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-7" name="__codelineno-1-7"></a><span class="w">        </span><span class="c1">//根据门店编码获取门店的完整信息</span><span class="w"></span>
+<a id="__codelineno-1-8" name="__codelineno-1-8"></a><span class="w">        </span><span class="n">Store</span><span class="w"> </span><span class="n">store</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getStore</span><span class="p">(</span><span class="n">storeCode</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-1-9" name="__codelineno-1-9"></a><span class="w">        </span><span class="c1">//(门店、等级 == 甲 )或 (门店、区域、编码 == 京津冀)</span><span class="w"></span>
+<a id="__codelineno-1-10" name="__codelineno-1-10"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">store</span><span class="p">.</span><span class="na">level</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Level</span><span class="p">.</span><span class="na">L_10</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">store</span><span class="p">.</span><span class="na">area</span><span class="p">.</span><span class="na">code</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;JJJ&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-11" name="__codelineno-1-11"></a><span class="w">            </span><span class="c1">//结果7折</span><span class="w"></span>
+<a id="__codelineno-1-12" name="__codelineno-1-12"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;0.7&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-1-13" name="__codelineno-1-13"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-14" name="__codelineno-1-14"></a><span class="w">        </span><span class="c1">//获取 具体新店天数</span><span class="w"></span>
+<a id="__codelineno-1-15" name="__codelineno-1-15"></a><span class="w">        </span><span class="kt">int</span><span class="w"> </span><span class="n">day</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getNewStoreDays</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-1-16" name="__codelineno-1-16"></a><span class="w">        </span><span class="c1">//getDistanceNowDays计算开业时间距今多少天 小于 新店天数</span><span class="w"></span>
+<a id="__codelineno-1-17" name="__codelineno-1-17"></a><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">getDistanceNowDays</span><span class="p">(</span><span class="n">store</span><span class="p">.</span><span class="na">startTime</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-18" name="__codelineno-1-18"></a><span class="w">            </span><span class="c1">//结果8折</span><span class="w"></span>
+<a id="__codelineno-1-19" name="__codelineno-1-19"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;0.8&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-1-20" name="__codelineno-1-20"></a><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">amount</span><span class="o">&gt;</span><span class="mi">10000</span><span class="p">){</span><span class="c1">//金额 大于 10000</span><span class="w"></span>
+<a id="__codelineno-1-21" name="__codelineno-1-21"></a><span class="w">            </span><span class="c1">//结果9折</span><span class="w"></span>
+<a id="__codelineno-1-22" name="__codelineno-1-22"></a><span class="w">            </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;0.9&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-1-23" name="__codelineno-1-23"></a><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-24" name="__codelineno-1-24"></a><span class="w">        </span><span class="c1">//结果不打折</span><span class="w"></span>
+<a id="__codelineno-1-25" name="__codelineno-1-25"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;1&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-1-26" name="__codelineno-1-26"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-27" name="__codelineno-1-27"></a>
+<a id="__codelineno-1-28" name="__codelineno-1-28"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getNewStoreDays</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-29" name="__codelineno-1-29"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">365</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-30" name="__codelineno-1-30"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-31" name="__codelineno-1-31"></a>
+<a id="__codelineno-1-32" name="__codelineno-1-32"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="nf">getDistanceNowDays</span><span class="p">(</span><span class="n">LocalDate</span><span class="w"> </span><span class="n">history</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-33" name="__codelineno-1-33"></a><span class="w">        </span><span class="n">Period</span><span class="w"> </span><span class="n">period</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Period</span><span class="p">.</span><span class="na">between</span><span class="p">(</span><span class="n">history</span><span class="p">,</span><span class="w"> </span><span class="n">LocalDate</span><span class="p">.</span><span class="na">now</span><span class="p">());</span><span class="w"></span>
+<a id="__codelineno-1-34" name="__codelineno-1-34"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">period</span><span class="p">.</span><span class="na">getDays</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-1-35" name="__codelineno-1-35"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-36" name="__codelineno-1-36"></a>
+<a id="__codelineno-1-37" name="__codelineno-1-37"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Store</span><span class="w"> </span><span class="nf">getStore</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">storeCode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-38" name="__codelineno-1-38"></a><span class="w">        </span><span class="n">Store</span><span class="w"> </span><span class="n">store</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Store</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-1-39" name="__codelineno-1-39"></a><span class="w">        </span><span class="n">store</span><span class="p">.</span><span class="na">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;1002&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-40" name="__codelineno-1-40"></a><span class="w">        </span><span class="n">store</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;XX门店&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-41" name="__codelineno-1-41"></a><span class="w">        </span><span class="n">store</span><span class="p">.</span><span class="na">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Level</span><span class="p">.</span><span class="na">L_20</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-42" name="__codelineno-1-42"></a><span class="w">        </span><span class="n">store</span><span class="p">.</span><span class="na">area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getArea</span><span class="p">(</span><span class="s">&quot;JJJ&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-1-43" name="__codelineno-1-43"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">store</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-44" name="__codelineno-1-44"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-45" name="__codelineno-1-45"></a>
+<a id="__codelineno-1-46" name="__codelineno-1-46"></a><span class="w">    </span><span class="kd">private</span><span class="w"> </span><span class="n">Area</span><span class="w"> </span><span class="nf">getArea</span><span class="p">(</span><span class="n">String</span><span class="w"> </span><span class="n">areaCode</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-1-47" name="__codelineno-1-47"></a><span class="w">        </span><span class="n">Area</span><span class="w"> </span><span class="n">area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">Area</span><span class="p">();</span><span class="w"></span>
+<a id="__codelineno-1-48" name="__codelineno-1-48"></a><span class="w">        </span><span class="n">area</span><span class="p">.</span><span class="na">code</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;JJJ&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-49" name="__codelineno-1-49"></a><span class="w">        </span><span class="n">area</span><span class="p">.</span><span class="na">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;京津冀&quot;</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-50" name="__codelineno-1-50"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">area</span><span class="p">;</span><span class="w"></span>
+<a id="__codelineno-1-51" name="__codelineno-1-51"></a><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<a id="__codelineno-1-52" name="__codelineno-1-52"></a><span class="p">}</span><span class="w"></span>
+</code></pre></div></td></tr></table></div>
+<h2 id="_3">如何配置</h2>
+<h3 id="_4">门店、区域、等级枚举实体</h3>
+<div class="admonition note">
+<p class="admonition-title">Meta组件是提供对规则对象的管理</p>
+<p>提示：参与执行过程的数据实体则可以抽象成Meta组件配置的内容 <br />
+包括了MetaClass 规则对象类、MetaProperty对象属性项、MetaEnum属性项枚举值 <br />
+具体案例如下可以将以下代码利用meta组件组件的配置进行表达 
+<img alt="RUNOOB 决策图时序图" src="https://github.com/failgoddess/rule/blob/master/doc/img/%E8%A7%84%E5%88%99%E5%AF%B9%E8%B1%A1.png?raw=true" /></p>
+</div>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"><a href="#__codelineno-2-1"> 1</a></span>
+<span class="normal"><a href="#__codelineno-2-2"> 2</a></span>
+<span class="normal"><a href="#__codelineno-2-3"> 3</a></span>
+<span class="normal"><a href="#__codelineno-2-4"> 4</a></span>
+<span class="normal"><a href="#__codelineno-2-5"> 5</a></span>
+<span class="normal"><a href="#__codelineno-2-6"> 6</a></span>
+<span class="normal"><a href="#__codelineno-2-7"> 7</a></span>
+<span class="normal"><a href="#__codelineno-2-8"> 8</a></span>
+<span class="normal"><a href="#__codelineno-2-9"> 9</a></span>
+<span class="normal"><a href="#__codelineno-2-10">10</a></span>
+<span class="normal"><a href="#__codelineno-2-11">11</a></span>
+<span class="normal"><a href="#__codelineno-2-12">12</a></span>
+<span class="normal"><a href="#__codelineno-2-13">13</a></span>
+<span class="normal"><a href="#__codelineno-2-14">14</a></span>
+<span class="normal"><a href="#__codelineno-2-15">15</a></span>
+<span class="normal"><a href="#__codelineno-2-16">16</a></span>
+<span class="normal"><a href="#__codelineno-2-17">17</a></span>
+<span class="normal"><a href="#__codelineno-2-18">18</a></span>
+<span class="normal"><a href="#__codelineno-2-19">19</a></span>
+<span class="normal"><a href="#__codelineno-2-20">20</a></span>
+<span class="normal"><a href="#__codelineno-2-21">21</a></span>
+<span class="normal"><a href="#__codelineno-2-22">22</a></span>
+<span class="normal"><a href="#__codelineno-2-23">23</a></span>
+<span class="normal"><a href="#__codelineno-2-24">24</a></span>
+<span class="normal"><a href="#__codelineno-2-25">25</a></span>
+<span class="normal"><a href="#__codelineno-2-26">26</a></span></pre></div></td><td class="code"><div><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1"></a><span class="nt">&lt;metaEnums&gt;</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2"></a>    <span class="nt">&lt;metaEnum</span> <span class="na">code=</span><span class="s">&quot;storeLevel&quot;</span> <span class="na">name=</span><span class="s">&quot;门店等级&quot;</span> <span class="na">type=</span><span class="s">&quot;FIXED&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3"></a>        <span class="nt">&lt;items&gt;</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4"></a>            <span class="nt">&lt;item</span> <span class="na">code=</span><span class="s">&quot;10&quot;</span> <span class="na">name=</span><span class="s">&quot;甲&quot;</span><span class="nt">&gt;&lt;/item&gt;</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5"></a>            <span class="nt">&lt;item</span> <span class="na">code=</span><span class="s">&quot;20&quot;</span> <span class="na">name=</span><span class="s">&quot;乙&quot;</span><span class="nt">&gt;&lt;/item&gt;</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6"></a>            <span class="nt">&lt;item</span> <span class="na">code=</span><span class="s">&quot;30&quot;</span> <span class="na">name=</span><span class="s">&quot;丙&quot;</span><span class="nt">&gt;&lt;/item&gt;</span>
+<a id="__codelineno-2-7" name="__codelineno-2-7"></a>        <span class="nt">&lt;/items&gt;</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8"></a>    <span class="nt">&lt;/metaEnum&gt;</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9"></a><span class="nt">&lt;/metaEnums&gt;</span>
+<a id="__codelineno-2-10" name="__codelineno-2-10"></a><span class="nt">&lt;metaClasses&gt;</span>
+<a id="__codelineno-2-11" name="__codelineno-2-11"></a>    <span class="nt">&lt;metaClass</span> <span class="na">code=</span><span class="s">&quot;area&quot;</span> <span class="na">name=</span><span class="s">&quot;区域&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-2-12" name="__codelineno-2-12"></a>        <span class="nt">&lt;properties&gt;</span>
+<a id="__codelineno-2-13" name="__codelineno-2-13"></a>            <span class="nt">&lt;property</span> <span class="na">code=</span><span class="s">&quot;code&quot;</span> <span class="na">name=</span><span class="s">&quot;门店编码&quot;</span> <span class="na">dataType=</span><span class="s">&quot;STRING&quot;</span> <span class="na">primary=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-2-14" name="__codelineno-2-14"></a>            <span class="nt">&lt;property</span> <span class="na">code=</span><span class="s">&quot;name&quot;</span> <span class="na">name=</span><span class="s">&quot;门店名称&quot;</span> <span class="na">dataType=</span><span class="s">&quot;STRING&quot;</span> <span class="nt">/&gt;</span>
+<a id="__codelineno-2-15" name="__codelineno-2-15"></a>        <span class="nt">&lt;/properties&gt;</span>
+<a id="__codelineno-2-16" name="__codelineno-2-16"></a>    <span class="nt">&lt;/metaClass&gt;</span>
+<a id="__codelineno-2-17" name="__codelineno-2-17"></a>    <span class="nt">&lt;metaClass</span> <span class="na">code=</span><span class="s">&quot;store&quot;</span> <span class="na">name=</span><span class="s">&quot;门店&quot;</span><span class="nt">&gt;</span>
+<a id="__codelineno-2-18" name="__codelineno-2-18"></a>        <span class="nt">&lt;properties&gt;</span>
+<a id="__codelineno-2-19" name="__codelineno-2-19"></a>            <span class="nt">&lt;property</span> <span class="na">code=</span><span class="s">&quot;code&quot;</span> <span class="na">name=</span><span class="s">&quot;门店编码&quot;</span> <span class="na">dataType=</span><span class="s">&quot;STRING&quot;</span> <span class="na">primary=</span><span class="s">&quot;true&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-2-20" name="__codelineno-2-20"></a>            <span class="nt">&lt;property</span> <span class="na">code=</span><span class="s">&quot;name&quot;</span> <span class="na">name=</span><span class="s">&quot;门店名称&quot;</span> <span class="na">dataType=</span><span class="s">&quot;STRING&quot;</span> <span class="nt">/&gt;</span>
+<a id="__codelineno-2-21" name="__codelineno-2-21"></a>            <span class="nt">&lt;property</span> <span class="na">code=</span><span class="s">&quot;startTime&quot;</span> <span class="na">name=</span><span class="s">&quot;开业时间&quot;</span> <span class="na">dataType=</span><span class="s">&quot;TIME_YMD&quot;</span> <span class="nt">/&gt;</span>
+<a id="__codelineno-2-22" name="__codelineno-2-22"></a>            <span class="nt">&lt;property</span> <span class="na">code=</span><span class="s">&quot;level&quot;</span> <span class="na">name=</span><span class="s">&quot;门店等级&quot;</span> <span class="na">dataType=</span><span class="s">&quot;STRING&quot;</span> <span class="na">enumCode=</span><span class="s">&quot;storeLevel&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-2-23" name="__codelineno-2-23"></a>            <span class="nt">&lt;property</span> <span class="na">code=</span><span class="s">&quot;area&quot;</span> <span class="na">name=</span><span class="s">&quot;门店所属区域&quot;</span> <span class="na">dataType=</span><span class="s">&quot;area&quot;</span><span class="nt">/&gt;</span>
+<a id="__codelineno-2-24" name="__codelineno-2-24"></a>        <span class="nt">&lt;/properties&gt;</span>
+<a id="__codelineno-2-25" name="__codelineno-2-25"></a>    <span class="nt">&lt;/metaClass&gt;</span>
+<a id="__codelineno-2-26" name="__codelineno-2-26"></a><span class="nt">&lt;/metaClasses&gt;</span>
+</code></pre></div></td></tr></table></div>
+<h3 id="_5">折扣规则的配置</h3>
+<p>将业务逻辑采用决策图的方式表达
+<img alt="RUNOOB 决策图时序图" src="https://github.com/failgoddess/rule/blob/master/doc/img/%E5%86%B3%E7%AD%96%E5%9B%BE1.png?raw=true" />
+<img alt="RUNOOB 决策图时序图" src="https://github.com/failgoddess/rule/blob/master/doc/img/%E5%86%B3%E7%AD%96%E5%9B%BE2.png?raw=true" /></p>
+<h4 id="action">Action行为定义</h4>
+<div class="admonition note">
+<p class="admonition-title">getStore函数名称、方法体、返回值ORM映射部分采用Action表示</p>
+<table>
+<thead>
+<tr>
+<th>函数名称code</th>
+<th>行为类型type</th>
+<th>返参数据类型complex</th>
+<th>返参是否列表</th>
+<th>返回值映射mappings</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>storeCode</td>
+<td></td>
+<td>STORE</td>
+<td>0</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>返回值映射采用Mapping表达,默认mapping采用区分大小写的属性名映射</p>
+<table>
+<thead>
+<tr>
+<th>源属性项code</th>
+<th>目标属性项result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>code</td>
+</tr>
+<tr>
+<td>name</td>
+<td>name</td>
+</tr>
+<tr>
+<td>startTime</td>
+<td>startTime</td>
+</tr>
+<tr>
+<td>level</td>
+<td>level</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="param">Param入参</h4>
+<div class="admonition note">
+<p class="admonition-title">getStore入参部分我们抽象为Param列表来进行表达为</p>
+<table>
+<thead>
+<tr>
+<th>入参名称code</th>
+<th>必传necessary</th>
+<th>参数数据类型dataType</th>
+<th>是否列表complex</th>
+<th>默认值data</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>storeCode</td>
+<td>true</td>
+<td>STRING</td>
+<td>0</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<p>上述没有默认值存在默认值的情况可以采用 Formula表达式表示默认值</p>
+</div>
+<h4 id="formula">Formula表达式</h4>
+<p>操作数是程序的最小操作单元,</p>
+<div class="admonition note">
+<p class="admonition-title">我们用FormulaNode表示一个的操作数</p>
+<ul>
+<li>Themis中内置了3种基础操作数    <ul>
+<li>DataNode 表示固定值,是有配置人员手动指定的, 例如:xxxx</li>
+<li>PathNode 表示变量值,可以基于jsonPath的写法从决策上下文中获取指定的变量值,标识为${xxx.yyy}</li>
+<li>FuncNode 表示方法型函数的调用,标识为%{方法名(形参1:操作数,......)}</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="admonition success">
+<p class="admonition-title">PathNode节点</p>
+<p>store.startTime获取门店的开业时间 可以采用 ${store.startTime}</p>
+</div>
+<div class="admonition success">
+<p class="admonition-title">FuncNode节点</p>
+<p>调用getDistanceNowDays传入门店的开业时间,计算开业时间距今多少天
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">getDistanceNowDays</span><span class="p">(</span><span class="n">store</span><span class="p">.</span><span class="na">startTime</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">day</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">    </span><span class="c1">//结果8折</span><span class="w"></span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;0.8&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+可以表示为 
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>%{getDistanceNowDays(history:${store.startTime})}
+</code></pre></div></p>
+</div>
+<h4 id="graph">Graph决策图</h4>
+<div class="admonition note">
+<p class="admonition-title">Graph来对图中的节点和流程进行描述</p>
+<table>
+<thead>
+<tr>
+<th>编码code</th>
+<th>名称name</th>
+<th>入参列表params</th>
+<th>第一跳firstBranchCode</th>
+<th>分支列表branches</th>
+<th>结果列表results</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>getDiscount</td>
+<td>下单计算折扣</td>
+<td></td>
+<td>等级分支</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>在图中我们有三大核心元素 分支Branch、链接Link、结果Result;<ul>
+<li>每个规则都至少有一个分支,作为图的入口[ <code>第一跳</code> ] </li>
+<li>链接属于分支的子属性用于链接分支与分支或者分支与结果,链接起到向后跳转的作用</li>
+<li>结果表示流程图的终结符,作为图的出口</li>
+</ul>
+</li>
+</ul>
+</div>
+<h4 id="branch">Branch分支</h4>
+<div class="admonition note">
+<p class="admonition-title">Branch是分支结构的描述</p>
+<table>
+<thead>
+<tr>
+<th>编码code</th>
+<th>名称name</th>
+<th>执行列表executes</th>
+<th>链接列表links</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>B001</td>
+<td>等级分支</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>B002</td>
+<td>新店分支</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="RUNOOB 分支" src="https://github.com/failgoddess/rule/blob/master/doc/img/%E5%88%86%E6%94%AF.png?raw=true" /></p>
+</div>
+<h4 id="execute">Execute执行行为</h4>
+<p>getDiscount调用getStore并且将返回值赋值到store变量</p>
+<div class="admonition note">
+<p class="admonition-title">我们抽象为Execute来进行表达为</p>
+<table>
+<thead>
+<tr>
+<th>调用名称code</th>
+<th>行为名称actionCode</th>
+<th>是否接收返回值init</th>
+<th>入参列表injects</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>store</td>
+<td>getStore</td>
+<td>true</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>入参映射采用Inject表达,${getStore} 为Formula表达式</p>
+<table>
+<thead>
+<tr>
+<th>形参名称</th>
+<th>实参数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>code</td>
+<td>data</td>
+</tr>
+<tr>
+<td>storeCode</td>
+<td>${getStore}</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h4 id="link">Link链接</h4>
+<div class="admonition note">
+<p class="admonition-title">Link是链接结构的描述</p>
+<table>
+<thead>
+<tr>
+<th>永真条件</th>
+<th>优先级</th>
+<th>下一跳类型</th>
+<th>下一跳</th>
+<th>表达式</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>eternal</td>
+<td>priority</td>
+<td>nextType</td>
+<td>nextCode</td>
+<td>expression</td>
+</tr>
+<tr>
+<td>fasle</td>
+<td>1</td>
+<td>结果</td>
+<td>七折</td>
+<td></td>
+</tr>
+<tr>
+<td>true</td>
+<td>2</td>
+<td>分支</td>
+<td>新店分支</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p><img alt="RUNOOB 链接" src="https://github.com/failgoddess/rule/blob/master/doc/img/%E9%93%BE%E6%8E%A5.png?raw=true" /></p>
+</div>
+<h4 id="expression">Expression表达式</h4>
+<p>Themis支持关系、优先级、逻辑运算 <br />
+运算的模型我们可以抽象为  A opention B 的形式,opention可以参考操作符部分。参考数学中 被除数 / 除数 的形式我们称A为被比较的阈值,B为阈值。 <br />
+运算过程还要支持()优先级运算。   <br />
+例如 getDiscount 函数中 表达式(store.level == Level.L_10) || (store.area.code == "JJJ")<br />
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">//(门店、等级 == 甲 )或 (门店、区域、编码 == 京津冀)</span><span class="w"></span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">store</span><span class="p">.</span><span class="na">level</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Level</span><span class="p">.</span><span class="na">L_10</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">(</span><span class="n">store</span><span class="p">.</span><span class="na">area</span><span class="p">.</span><span class="na">code</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s">&quot;JJJ&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="c1">//结果7折</span><span class="w"></span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">BigDecimal</span><span class="p">(</span><span class="s">&quot;0.7&quot;</span><span class="p">);</span><span class="w"></span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<img alt="RUNOOB Exp" src="https://github.com/failgoddess/rule/blob/master/doc/img/%E8%A1%A8%E8%BE%BE%E5%BC%8F.png?raw=true" />
+<img alt="RUNOOB Exp" src="https://github.com/failgoddess/rule/blob/master/doc/img/exp1.png?raw=true" /></p>
+<div class="admonition note">
+<p class="admonition-title">我们采用Expression来进行表达</p>
+<table>
+<thead>
+<tr>
+<th>id</th>
+<th>运算类型type</th>
+<th>运算符 operation</th>
+<th>数据类型dataType</th>
+<th>被比较的阀值cover</th>
+<th>阀值threshold</th>
+<th>子运算subExpression</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>关系</td>
+<td>等于</td>
+<td>数字</td>
+<td>${store.level}</td>
+<td>10</td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>关系</td>
+<td>等于</td>
+<td>数字</td>
+<td>${store.area.code}</td>
+<td>JJJ</td>
+<td></td>
+</tr>
+<tr>
+<td>3</td>
+<td>逻辑</td>
+<td>或</td>
+<td></td>
+<td></td>
+<td></td>
+<td>1,2</td>
+</tr>
+</tbody>
+</table>
+<div class="highlight"><pre><span></span><code>在expressionType为关系类的时候operationCode必须为关系运算符 被比较的阀值可以采用 Formula表达式表示默认值
+在expressionType为逻辑类的时候operationCode必须为逻辑运算符 表示subExpression列表元素之间的逻辑关系
+</code></pre></div>
+</div>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" class="md-footer__link md-footer__link--prev" aria-label="Previous: 使用文档" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              使用文档
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../%E8%AE%BE%E8%AE%A1%E6%80%9D%E8%B7%AF/" class="md-footer__link md-footer__link--next" aria-label="Next: 设计思路" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              设计思路
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      © 女神出品
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.5bf1dace.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.078830c0.min.js"></script>
+      
+    
+  </body>
+</html>
